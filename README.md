@@ -1,0 +1,6 @@
+```
+# .ENV
+PORT = 3030
+SECRET_KEY = sumalee
+LINE_NOTIFY_TOKEN = IQaCm5peGKyk3VQRAXlbH4nPT115aUde2u5m9jdpEFx
+```
