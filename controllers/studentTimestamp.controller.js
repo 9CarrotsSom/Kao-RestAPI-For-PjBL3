@@ -31,7 +31,7 @@ async function studentTimestamp(req, res){
     const getStudentTimestampCache = await sqliteExecute.get(getCurrentStudentDataQuery, [String(studentId), String(dateString)]);
 
     if(getStudentTimestampCache.results.length === 0){
-        await sendLineNotify(`ไอเด็กเหี้ย ID : ${studentId} ได้ขึ้นถูกกูลักพาตัวเรียบร้อยเเล้วสาสเยสสเเม่`, config.api.lineNotifyToken);
+        await sendLineNotify(`รหัสนักเรียน : ${studentId} \nได้ขึ้นรถเเล้ว`, config.api.lineNotifyToken);
         const getCurrentServerTime = new Date().getTime();
         const createNewStudentTimestampCacheQuery = "INSERT INTO student_timestamp(student_id,timestamp_in,create_at,date) VALUES (?,?,?,?)";
         await sqliteExecute.run(createNewStudentTimestampCacheQuery, [String(studentId), String(timestamp), String(getCurrentServerTime), String(dateString)]);
@@ -42,7 +42,7 @@ async function studentTimestamp(req, res){
         });
     }
     else {
-        await sendLineNotify(`ไอเด็กเหี้ย ID : ${studentId} ลูกมึงได้ถูกกูเอาไปปล่อยไว้ชายเเดนเเล้วไอควายยย`, config.api.lineNotifyToken);
+        await sendLineNotify(`รหัสนักเรียน : ${studentId} \nได้ลงจากรถเเล้ว`, config.api.lineNotifyToken);
         const getCurrentServerTime = new Date().getTime();
         const updateOutTimeQuery = "UPDATE student_timestamp SET timestamp_out=? WHERE unique_id=?";
         await sqliteExecute.run(updateOutTimeQuery, [String(getCurrentServerTime), String(getStudentTimestampCache.results[0].unique_id)]);

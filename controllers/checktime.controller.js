@@ -53,7 +53,7 @@ async function checkTime(req, res){
             });
         }
         results.forEach(async studentData =>{
-            await sendLineNotify(`ลูกคุณมึงตัวไหนมัน ID : ${studentData.student_id} ลูกมึงจะเเห้งตายในรถกูอยู่เเล้วอีดอก!`, config.api.lineNotifyToken);
+            await sendLineNotify(`รหัสนักเรียน : ${studentData.student_id} \nพบว่ายังไม่เเสกนบัตรออก`, config.api.lineNotifyToken);
         });
         return res.json({
             status: "OK",
